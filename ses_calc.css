@@ -1,0 +1,305 @@
+/* Base & Layout */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #05010a;
+    color: #e9d5ff;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Hide Native Spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* 3D Grid Background */
+.cyber-grid-floor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4000px;
+    height: 100vh;
+    margin-left: -2000px;
+    background-image:
+        linear-gradient(rgba(168, 85, 247, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.4) 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-position: center top;
+    transform-origin: 50% 0%;
+    animation: gridFlow 2s linear infinite;
+    z-index: -10;
+    opacity: 0.3;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    pointer-events: none;
+}
+
+.horizon-glow {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: -15;
+    pointer-events: none;
+}
+
+@keyframes gridFlow {
+    0% {
+        transform: perspective(300px) rotateX(70deg) translateY(0);
+    }
+
+    100% {
+        transform: perspective(300px) rotateX(70deg) translateY(100px);
+    }
+}
+
+.scanline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 50%);
+    background-size: 100% 4px;
+    opacity: 0.15;
+}
+
+/* Components */
+.cyber-panel {
+    background: rgba(168, 85, 247, 0.05);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-step-mini {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 100%;
+    background: rgba(168, 85, 247, 0.1);
+    color: #d946ef;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (min-width: 1024px) {
+    .btn-step-mini {
+        width: 20px;
+        font-size: 0.8rem;
+    }
+}
+
+.input-step-compact {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 1rem;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: #0f0518;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #4c1d95;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #d946ef;
+}
+
+/* Desktop Grid Layout */
+.container-excel {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+    .container-excel {
+        max-width: 1400px;
+    }
+}
+
+.grid-definition {
+    display: grid;
+    gap: 0;
+}
+
+@media (min-width: 1024px) {
+    .grid-definition {
+        grid-template-columns: 1fr 140px 140px 100px 150px 150px 50px;
+    }
+}
+
+.grid-header {
+    background: rgba(168, 85, 247, 0.15);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #a78bfa;
+}
+
+.grid-header>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-right: 1px solid rgba(168, 85, 247, 0.2);
+    white-space: nowrap;
+    padding: 8px 0;
+}
+
+.grid-header>div:last-child {
+    border-right: none;
+}
+
+.grid-row {
+    background: rgba(15, 5, 24, 0.6);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    backdrop-filter: blur(2px);
+    transition: background 0.2s;
+    height: auto;
+}
+
+@media (min-width: 1024px) {
+    .grid-row {
+        height: 48px;
+    }
+}
+
+.grid-row:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+/* Mobile Card Styling */
+@media (max-width: 1023px) {
+    .grid-row {
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+        margin-bottom: 8px;
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        border-radius: 4px;
+        background: rgba(15, 5, 24, 0.8);
+    }
+
+    .mobile-row-line {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .mobile-row-line:last-child {
+        margin-bottom: 0;
+    }
+
+    .mobile-label {
+        font-size: 0.75rem;
+        color: #a78bfa;
+        min-width: 60px;
+        font-weight: bold;
+    }
+
+    .mobile-content {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+/* Alignments for Desktop */
+@media (min-width: 1024px) {
+    .cell-left {
+        justify-content: flex-start;
+        padding-left: 8px;
+    }
+
+    .cell-center {
+        justify-content: center;
+    }
+
+    .cell-right {
+        justify-content: flex-end;
+        padding-right: 8px;
+    }
+}
+
+/* Dual Label Tax Switch */
+.tax-switch {
+    display: flex;
+    background: rgba(15, 5, 24, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 2px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tax-switch-label {
+    position: relative;
+    z-index: 2;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #6d28d9;
+    transition: color 0.3s;
+}
+
+.tax-switch-label.active {
+    color: #000;
+}
+
+.tax-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(50% - 2px);
+    background: #d946ef;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.5);
+}
+
+.tax-switch.inclusive .tax-switch-thumb {
+    transform: translateX(100%);
+}
