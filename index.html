@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SES-CALC</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: {
+                            bg: '#05010a',
+                            panel: '#0f0518',
+                            neon: '#d946ef',
+                            primary: '#a855f7',
+                            accent: '#6366f1',
+                            dim: '#4c1d95',
+                            text: '#e9d5ff',
+                            textDim: '#a78bfa'
+                        }
+                    },
+                    fontFamily: {
+                        cyber: ['"Orbitron"', 'sans-serif'],
+                        tech: ['"Rajdhani"', 'sans-serif'],
+                        jp: ['"Zen Kaku Gothic New"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-neon': 'pulseNeon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scanline': 'scanline 8s linear infinite',
+                    },
+                    keyframes: {
+                        pulseNeon: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 5px #d946ef)' },
+                            '50%': { opacity: 0.7, filter: 'drop-shadow(0 0 15px #d946ef)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100vh)' }
+                        },
+                        gridFlow: {
+                            '0%': { transform: 'perspective(500px) rotateX(60deg) translateY(0)' },
+                            '100%': { transform: 'perspective(500px) rotateX(60deg) translateY(100px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="ses_calc.css">
+</head>
+
+<body>
+    <div class="horizon-glow"></div>
+    <div class="cyber-grid-floor"></div>
+    <div class="scanline-overlay"></div>
+
+    <div id="root" class="h-full w-full flex flex-col relative z-10"></div>
+
+    <script src="ses_calc.js" type="text/babel"></script>
+</body>
+
+</html>

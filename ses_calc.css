@@ -1,0 +1,265 @@
+body {
+    background-color: #05010a;
+    color: #e9d5ff;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Hide Native Spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* 3D Forward Moving Grid - Centered & Symmetric */
+.cyber-grid-floor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4000px;
+    height: 100vh;
+    margin-left: -2000px;
+    background-image:
+        linear-gradient(rgba(168, 85, 247, 0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 85, 247, 0.4) 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-position: center top;
+    transform-origin: 50% 0%;
+    animation: gridFlow 2s linear infinite;
+    z-index: -10;
+    opacity: 0.3;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Horizon Glow */
+.horizon-glow {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: -15;
+    pointer-events: none;
+}
+
+@keyframes gridFlow {
+    0% {
+        transform: perspective(300px) rotateX(70deg) translateY(0);
+    }
+
+    100% {
+        transform: perspective(300px) rotateX(70deg) translateY(100px);
+    }
+}
+
+.scanline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 50%);
+    background-size: 100% 4px;
+    opacity: 0.15;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f0518;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4c1d95;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d946ef;
+}
+
+.btn-step-mini {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+    background: rgba(168, 85, 247, 0.1);
+    color: #d946ef;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transition: all 0.1s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-step-mini:hover {
+    background: rgba(168, 85, 247, 0.3);
+    color: #fff;
+    text-shadow: 0 0 5px #d946ef;
+}
+
+.btn-step-mini:active {
+    transform: scale(0.95);
+    background: #d946ef;
+    color: #000;
+}
+
+.input-step-compact {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    appearance: none;
+    font-size: 1rem;
+}
+
+.input-step-compact:focus {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.cyber-panel {
+    background: rgba(168, 85, 247, 0.05);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cyber-panel-row {
+    background: rgba(15, 5, 24, 0.6);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+    backdrop-filter: blur(2px);
+    transition: background 0.2s;
+}
+
+.cyber-panel-row:hover {
+    background: rgba(168, 85, 247, 0.1);
+}
+
+.container-excel {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.grid-definition {
+    display: grid;
+    grid-template-columns: 1fr 140px 140px 120px 150px 150px 50px;
+    gap: 0;
+}
+
+.grid-header {
+    background: rgba(168, 85, 247, 0.15);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #a78bfa;
+    letter-spacing: 0.05em;
+}
+
+.grid-header>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-right: 1px solid rgba(168, 85, 247, 0.2);
+    white-space: nowrap;
+    padding: 8px 0;
+}
+
+.grid-header>div:last-child {
+    border-right: none;
+}
+
+.cell-left {
+    justify-content: flex-start;
+}
+
+.cell-center {
+    justify-content: center;
+}
+
+.cell-right {
+    justify-content: flex-end;
+}
+
+.grid-row {
+    align-items: center;
+    height: 48px;
+    padding: 0;
+}
+
+.grid-row>div {
+    padding: 0 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Dual Label Tax Switch */
+.tax-switch {
+    display: flex;
+    background: rgba(15, 5, 24, 0.8);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 2px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tax-switch-label {
+    position: relative;
+    z-index: 2;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #6d28d9;
+    transition: color 0.3s;
+}
+
+.tax-switch-label.active {
+    color: #000;
+}
+
+.tax-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: calc(50% - 2px);
+    background: #d946ef;
+    border-radius: 2px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.5);
+}
+
+.tax-switch.inclusive .tax-switch-thumb {
+    transform: translateX(100%);
+}
