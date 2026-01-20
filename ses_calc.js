@@ -173,7 +173,7 @@ const App = () => {
 
                                     {/* Line 1: Name & Delete (Delete shown always or just on cards?) */}
                                     <div className="mobile-row-line lg:block cell-left">
-                                        <div className="lg:hidden mobile-label">案件・要員</div>
+                                        <div className="lg:hidden mobile-label">案件名</div>
                                         <div className="mobile-content w-full">
                                             <input
                                                 type="text"
@@ -261,3 +261,4 @@ const App = () => {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
+
